@@ -34,7 +34,9 @@ Visualizer.prototype.onKeyPress = function (data) {
     var html = keyTemplate.render({
        color: color
     }); 
-    this.$el.append(html);
+    var circleKeyEl = $(html);
+    circleKeyEl.css('background-color', color);
+    this.$el.append(circleKeyEl);
 };
 
 Visualizer.getRandomColor = function () {
