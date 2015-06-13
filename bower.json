@@ -1,0 +1,22 @@
+{
+  "name": "glowing-octo-robot",
+  "version": "0.0.0",
+  "homepage": "https://github.com/tabakd/glowing-octo-robot",
+  "authors": [
+    "Daniel Tabak <daniel@tabak.ca>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "wad": "~2.0.2"
+  }
+}
