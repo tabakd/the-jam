@@ -2,6 +2,7 @@ var $ = require('jquery');
 var inherits = require('util').inherits;
 var keyTemplate = require('./templates/circle-key.html');
 var View = require('./view.js');
+var CircleKey = require('./circle-key.js');
 
 function Visualizer(opts) {
     opts = opts || {}; 
@@ -32,27 +33,19 @@ Visualizer.prototype.stop = function () {
 // velocity > 0
 Visualizer.prototype.onKeyPress = function (data) {
     var color = Visualizer.getRandomColor();
-    var html = keyTemplate.render({
-       color: color
-    }); 
-    var circleKeyEl = $(html);
+    var circleKey = new CircleKey({
+        color: color
+    });
 
     var containerWidth = this.$el.width();
     var containerHeight = this.$el.height();
-
-    var circleWidth = 100;
-
+    var circleWidth = circleKey.width();
     var x = Visualizer.getRandomFromRange(circleWidth, containerWidth - circleWidth);
     var y = Visualizer.getRandomFromRange(circleWidth,  containerHeight - circleWidth);
 
-    //circleKeyEl.css('background-color', color);
-    circleKeyEl.find('.key-circle-velocity').css('background-color', color);
-    circleKeyEl.find('.key-circle-duration').css('background-color', color);
-    circleKeyEl.css('transform', 'translate('+ x +'px,' + y + 'px)');
-    this.$el.append(circleKeyEl);
-    setTimeout(function () {
-        circleKeyEl.addClass('key-circle-hold');
-    }, 100);
+    circleKey.setPosition(x, y);
+    this.$el.append(circleKey.$el);
+    circleKey.render();
 };
 
 Visualizer.prototype.onKeyOff = function (data) {
