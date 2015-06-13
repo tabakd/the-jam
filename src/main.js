@@ -19,6 +19,7 @@ function main() {
         el: ".container"
     });
     lobby.render();
+    lobby._visualizer.demo();
 
     // Listen for other clients, create a visualizer for them.
 }
