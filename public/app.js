@@ -6,18 +6,18 @@ var piano = new Wad({
         attack : .01, 
         decay : 1, 
         sustain : 1.0, 
-        hold : 4.0, 
-        release : .3
+        hold : 0.5, 
+        release : 0.5,
     }, 
-//    filter : {
-//        type : 'lowpass', 
-//        frequency : 1200, 
-//        q : 5, 
-//        env : {
-//            attack : 0, 
-//            frequency : 1200
-//        }
-//    }
+    filter : {
+        type : 'lowpass', 
+        frequency : 1200, 
+        q : 5, 
+        env : {
+            attack : 0, 
+            frequency : 1000
+        }
+    }
 })
 
 
@@ -40,15 +40,11 @@ document.addEventListener("keyup", function(e){
 
 var notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 
-
-var square   = new Wad({ source : 'square' })
-
-
 socket.on('message', function (data) {
   if(data.message[2] != 0){
-  square.play({pitch: notes[data.message[1] % 12]+4})
+  piano.play({pitch: notes[data.message[1] % 12]+4})
   }else{
-  square.stop()
+  piano.stop()
   }
 });
 
