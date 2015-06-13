@@ -35,7 +35,8 @@ Visualizer.prototype.onKeyPress = function (data) {
     if (!this._keys.hasOwnProperty(data.message[1])) {
         var color = this.color || utils.getRandomColor();
         this._keys[data.message[1]] = circleKey = new CircleKey({
-            color: color
+            color: color,
+            note: data.note
         });
     } else {
         return;

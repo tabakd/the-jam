@@ -4,8 +4,10 @@ var View = require('./view.js');
 var keyTemplate = require('./templates/circle-key.html');
 
 function CircleKey(opts) {
+    opts = opts || {};
     View.apply(this, arguments);
     this.color = opts.color;
+    this.note = opts.note;
 
     this.$el.on('transitionend', function () {
         this.$el.remove();
@@ -14,7 +16,9 @@ function CircleKey(opts) {
 inherits(CircleKey, View);
 
 CircleKey.prototype.render = function () {
-    var html = keyTemplate.render(); 
+    var html = keyTemplate.render({
+        note: this.note
+    }); 
     this.$el.html(html);
     
     //circleKeyEl.css('background-color', color);
