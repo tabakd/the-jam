@@ -4,6 +4,7 @@
   "description": "Something something midi socket",
   "main": "app.js",
   "dependencies": {
+    "browserify": "^10.2.4",
     "express": "^4.12.4",
     "inquirer": "^0.8.5",
     "lodash": "^3.9.3",
@@ -12,6 +13,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "bundle": "node_modules/browserify/bin/cmd.js -t jadeify src/main.js -o public/bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
@@ -24,5 +26,16 @@
   "bugs": {
     "url": "https://github.com/tabakd/glowing-octo-robot/issues"
   },
-  "homepage": "https://github.com/tabakd/glowing-octo-robot#readme"
+  "homepage": "https://github.com/tabakd/glowing-octo-robot#readme",
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+    "jquery": "./public/vendor/jquery/dist/jquery.js"
+  },
+  "browserify-shim": {
+    "jquery": "$"
+  }
 }

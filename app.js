@@ -34,7 +34,6 @@ io.on('connection', function (socket) {
   });
 })
 
-
 server.listen(3000, function(){
   var host = server.address().address;
   var port = server.address().port;
