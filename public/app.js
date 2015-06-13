@@ -20,8 +20,10 @@ var piano = new Wad({
     }
 })
 
-socket.on('message', function (data) {
-  piano.play({ pitch : 'C5' })
-  console.log(data.message)
-});
+var notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 
+socket.on('message', function (data) {
+  if(data.message[2] != 0){
+    piano.play({ pitch : notes[data.message[1] % 12] + 4 })
+  }
+});
