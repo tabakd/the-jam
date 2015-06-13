@@ -1,0 +1,28 @@
+.visualizer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+@circle-width: 100px;
+@circle-radius: 50px;
+
+.key-circle-velocity,
+.key-circle-duration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: @circle-width;
+    height: @circle-width;
+    border-radius: @circle-radius;
+    background-color: #111;
+}
+
+.key-circle-velocity {
+    opacity: 0.9;
+}
+.key-circle-duration {
+    opacity: 0.6;
+}
