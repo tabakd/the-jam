@@ -38,7 +38,6 @@ Lobby.onMessage = function (data) {
     if (data.message[2] != 0) {
         // Key pressed
         visualizer.onKeyPress(data);
-debugger;
     } else if (data.message[2] == 0) {
         // Key off
         visualizer.onKeyOff(data);
