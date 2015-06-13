@@ -47,6 +47,8 @@ var square   = new Wad({ source : 'square' })
 socket.on('message', function (data) {
   if(data.message[2] != 0){
   square.play({pitch: notes[data.message[1] % 12]+4})
+  }else{
+  square.stop()
   }
 });
 
