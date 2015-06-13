@@ -10,6 +10,8 @@ function Lobby(opts) {
     this.setElement(el);
     this.className = 'lobby';
 
+    this._visualizer = new Visualizer();
+
     View.apply(this, arguments);
 }
 inherits(Lobby, View);
@@ -19,6 +21,7 @@ Lobby.prototype.render = function () {
     var context = {};
     var html = template.render();
     this.$el.html(html);
+    this.$el.append(this._visualizer.$el);
 };
 
 module.exports = Lobby;

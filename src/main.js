@@ -15,7 +15,7 @@ function main() {
   })();
 
 
-    var lobby = new Lobby({
+    var lobby = window.lobby = new Lobby({
         el: ".container"
     });
     lobby.render();

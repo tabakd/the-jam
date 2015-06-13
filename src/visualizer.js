@@ -9,6 +9,8 @@ function Visualizer(opts) {
     this.setElement(el);
     this.className = 'visualizer';
 
+    this._intervalId;
+
     View.apply(this, arguments);
 }
 inherits(Visualizer, View);
@@ -17,7 +19,26 @@ Visualizer.prototype.render = function () {
     View.prototype.render.apply(this, arguments);
 };
 
-Visualizer.prototype.onKeyPress = function (e) {
-}
+Visualizer.prototype.demo = function () {
+    this._intervalId = setInterval(function () {
+        this.onKeyPress({});
+    }.bind(this), 2000);
+};
+
+Visualizer.prototype.stop = function () {
+    clearInterval(this._intervalId);
+};
+
+Visualizer.prototype.onKeyPress = function (data) {
+    var color = Visualizer.getRandomColor();
+    var html = keyTemplate.render({
+       color: color
+    }); 
+    this.$el.append(html);
+};
+
+Visualizer.getRandomColor = function () {
+    return '#'+Math.floor(Math.random()*16777215).toString(16);
+};
 
 module.exports = Visualizer;
