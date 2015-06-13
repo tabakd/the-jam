@@ -1,6 +1,5 @@
 var $ = require('jquery');
 var inherits = require('util').inherits;
-var keyTemplate = require('./templates/circle-key.html');
 var View = require('./view.js');
 var CircleKey = require('./circle-key.js');
 
@@ -48,11 +47,10 @@ Visualizer.prototype.onKeyPress = function (data) {
     circleKey.render();
 };
 
-Visualizer.prototype.onKeyOff = function (data) {
-}
-
 // velocity == 0
 // KeyOff
+Visualizer.prototype.onKeyOff = function (data) {
+}
 
 Visualizer.getRandomColor = function () {
     return '#'+Math.floor(Math.random()*16777215).toString(16);

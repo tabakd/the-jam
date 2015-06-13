@@ -6,6 +6,10 @@ var keyTemplate = require('./templates/circle-key.html');
 function CircleKey(opts) {
     View.apply(this, arguments);
     this.color = opts.color;
+
+    this.$el.on('transitionend', function () {
+        this.$el.remove();
+    });
 }
 inherits(CircleKey, View);
 
