@@ -9,6 +9,7 @@
 @circle-width: 100px;
 @circle-radius: 50px;
 
+.key-circle,
 .key-circle-velocity,
 .key-circle-duration {
     position: absolute;
@@ -17,12 +18,24 @@
     width: @circle-width;
     height: @circle-width;
     border-radius: @circle-radius;
-    background-color: #111;
 }
 
 .key-circle-velocity {
-    opacity: 0.9;
+    opacity: 0.4;
 }
 .key-circle-duration {
-    opacity: 0.6;
+    opacity: 0.4;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    transition: transform 20s linear;
+    -webkit-transition: -webkit-transform 20s linear;
+}
+
+.key-circle-hold {
+    .key-circle-duration {
+        transform: scale(10);
+        -webkit-transform: scale(10);
+        transition: transform 20s linear;
+        -webkit-transition: -webkit-transform 20s linear;
+    }
 }
