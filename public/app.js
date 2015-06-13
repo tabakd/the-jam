@@ -6,7 +6,7 @@ var piano = new Wad({
         attack : .01, 
         decay : 1, 
         sustain : 1.0, 
-        hold : 1.0, 
+        hold : 4.0, 
         release : .3
     }, 
 //    filter : {
@@ -20,18 +20,25 @@ var piano = new Wad({
 //    }
 })
 
-var notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 
 var keyboard = "qawsedrftgyhujikolp"
+var user = Math.random().toString(36).substring(7)
 
 document.addEventListener("keydown", function(e){
-  console.log(String.fromCharCode(e.keyCode))
-  console.log(keyboard.indexOf(String.fromCharCode(e.keyCode).toLowerCase()))
   socket.emit('message', {
     user: 'Daniel',
     message: [144, 44 + keyboard.indexOf(String.fromCharCode(e.keyCode).toLowerCase()), 100]
   })
 })
+
+document.addEventListener("keyup", function(e){
+  socket.emit('message', {
+    user: 'Daniel',
+    message: [144, 44 + keyboard.indexOf(String.fromCharCode(e.keyCode).toLowerCase()), 0]
+  })
+})
+
+var notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 
 socket.on('message', function (data) {
   if(data.message[2] != 0){
