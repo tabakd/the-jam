@@ -27,14 +27,25 @@ CircleKey.prototype.render = function () {
     this.$el.find('.key-circle-duration').css('background-color', this.color);
 
     this.$el.css({
-        'width': this.width,
-        'height': this.width,
-        'border-radius': this.width/2
+        'width': this.width+'px',
+        'height': this.width+'px',
+        'border-radius': this.width/2+'px'
     });
-    this.$el.children().css({
-        'width': this.width,
-        'height': this.width,
-        'border-radius': this.width/2
+    this.$el.find('.key-circle-label').css({
+        'width': this.width+'px',
+        'height': this.width+'px',
+        'border-radius': this.width/2+'px',
+        'line-height': this.width+'px'
+    });
+    this.$el.find('.key-circle-velocity').css({
+        'width': this.width+'px',
+        'height': this.width+'px',
+        'border-radius': this.width/2+'px'
+    });
+    this.$el.find('.key-circle-duration').css({
+        'width': this.width+'px',
+        'height': this.width+'px',
+        'border-radius': this.width/2+'px'
     });
 
     setTimeout(function () {

@@ -34,17 +34,18 @@ Visualizer.prototype.onKeyPress = function (data) {
 
     if (!this._keys.hasOwnProperty(data.message[1])) {
         var color = this.color || utils.getRandomColor();
+        var width = 100 + (data.message[2]); 
         this._keys[data.message[1]] = circleKey = new CircleKey({
             color: color,
             note: data.note,
-            width: data.message[2] * 1.5
+            width:  width
         });
     } else {
         return;
     }
 
-    var containerWidth = this.$el.width();
-    var containerHeight = this.$el.height();
+    var containerWidth = $(window).width();
+    var containerHeight = $(window).height();
     var circleWidth = circleKey.width;
     var x = utils.getRandomFromRange(circleWidth, containerWidth - circleWidth);
     var y = utils.getRandomFromRange(circleWidth,  containerHeight - circleWidth);

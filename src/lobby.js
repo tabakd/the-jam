@@ -20,6 +20,10 @@ function Lobby(opts) {
 inherits(Lobby, View);
 
 Lobby.onMessage = function (data) {
+    if (data.message[0] !== 144) {
+        return;
+    }
+
     // Register or fetch visualizer based on user
     var visualizer;
     if (!this._visualizers.hasOwnProperty(data.user)) {
