@@ -21,20 +21,20 @@ var piano = new Wad({
 })
 
 
-var keyboard = "qawsedrftgyhujikolp"
+var keyboard = "awedrftgyhujikol"
 var user = Math.random().toString(36).substring(7)
 
 document.addEventListener("keydown", function(e){
   socket.emit('message', {
     user: user,
-    message: [144, 44 + keyboard.indexOf(String.fromCharCode(e.keyCode).toLowerCase()), 100]
+    message: [144, 36 + keyboard.indexOf(String.fromCharCode(e.keyCode).toLowerCase()), 100]
   })
 })
 
 document.addEventListener("keyup", function(e){
   socket.emit('message', {
     user: user,
-    message: [144, 44 + keyboard.indexOf(String.fromCharCode(e.keyCode).toLowerCase()), 0]
+    message: [144, 36 + keyboard.indexOf(String.fromCharCode(e.keyCode).toLowerCase()), 0]
   })
 })
 
