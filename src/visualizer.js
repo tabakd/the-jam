@@ -53,7 +53,18 @@ Visualizer.prototype.onKeyOff = function (data) {
 }
 
 Visualizer.getRandomColor = function () {
-    return '#'+Math.floor(Math.random()*16777215).toString(16);
+    //return '#'+Math.floor(Math.random()*16777215).toString(16);
+    var colors = [
+        "#e674f5",
+        "#55c2ec",
+        "#6aeb4c",
+        "#fa9b5c",
+        "#3deda5",
+        "#b17dbe",
+        "#1095c8",
+        "1645cc"
+    ];
+    return colors[Math.floor(Visualizer.getRandomFromRange(0,colors.length))];
 };
 
 Visualizer.getRandomFromRange = function (min, max) {
