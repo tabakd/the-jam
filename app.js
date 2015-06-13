@@ -5,9 +5,12 @@ var io = require('socket.io')(server);
 
 app.use(express.static(__dirname + '/public'));
 
+
+var notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 io.on('connection', function (socket) {
   socket.on('message', function(data) {
     console.log(data)
+    data.note = notes[data.message[1] % 12]
     io.emit('message', data)
   });
 })
