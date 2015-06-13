@@ -36,7 +36,8 @@ Visualizer.prototype.onKeyPress = function (data) {
         var color = this.color || utils.getRandomColor();
         this._keys[data.message[1]] = circleKey = new CircleKey({
             color: color,
-            note: data.note
+            note: data.note,
+            width: data.message[2] * 1.5
         });
     } else {
         return;
@@ -44,7 +45,7 @@ Visualizer.prototype.onKeyPress = function (data) {
 
     var containerWidth = this.$el.width();
     var containerHeight = this.$el.height();
-    var circleWidth = circleKey.width();
+    var circleWidth = circleKey.width;
     var x = utils.getRandomFromRange(circleWidth, containerWidth - circleWidth);
     var y = utils.getRandomFromRange(circleWidth,  containerHeight - circleWidth);
 
