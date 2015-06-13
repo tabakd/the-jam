@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "bower": "^1.4.1",
-    "hogan.js": "^3.0.2",
+    "hogan.js": "~2",
     "jade": "^1.11.0",
     "jadeify": "^4.3.0",
     "less": "^2.5.1"
