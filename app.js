@@ -7,11 +7,7 @@ var midi = require('midi');
 app.use(express.static(__dirname + '/public'));
 
 var input = new midi.input();
-
-console.log(input.getPortCount())
-console.log(input.getPortName(0))
 input.openPort(1);
-
 input.ignoreTypes(false, false, false);
 
 io.on('connection', function (socket) {
