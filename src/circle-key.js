@@ -9,7 +9,7 @@ function CircleKey(opts) {
 
     this.$el.on('transitionend', function () {
         this.$el.remove();
-    });
+    }.bind(this));
 }
 inherits(CircleKey, View);
 
