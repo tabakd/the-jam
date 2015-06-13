@@ -47,8 +47,8 @@ Visualizer.prototype.onKeyPress = function (data) {
     var containerWidth = $(window).width();
     var containerHeight = $(window).height();
     var circleWidth = circleKey.width;
-    var x = utils.getRandomFromRange(circleWidth, containerWidth - circleWidth);
-    var y = utils.getRandomFromRange(circleWidth,  containerHeight - circleWidth);
+    var x = utils.getRandomFromRange(0, containerWidth - circleWidth);
+    var y = utils.getRandomFromRange(0,  containerHeight - circleWidth);
 
     circleKey.setPosition(x, y);
     this.$el.append(circleKey.$el);
