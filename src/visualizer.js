@@ -2,22 +2,21 @@ var $ = require('jquery');
 var inherits = require('util').inherits;
 var View = require('./view.js');
 var CircleKey = require('./circle-key.js');
+var utils = require('./utils.js');
 
 function Visualizer(opts) {
     opts = opts || {}; 
     var el = opts.el !== undefined ? $(opts.el) : $('<div></div>'); 
     this.setElement(el);
     this.className = 'visualizer';
+    this.color = opts.color;
+    this._keys = {};
 
     this._intervalId;
 
     View.apply(this, arguments);
 }
 inherits(Visualizer, View);
-
-Visualizer.prototype.render = function () {
-    View.prototype.render.apply(this, arguments);
-};
 
 Visualizer.prototype.demo = function () {
     this._intervalId = setInterval(function () {
@@ -31,16 +30,22 @@ Visualizer.prototype.stop = function () {
 
 // velocity > 0
 Visualizer.prototype.onKeyPress = function (data) {
-    var color = Visualizer.getRandomColor();
-    var circleKey = new CircleKey({
-        color: color
-    });
+    var circleKey;
+
+    if (!this._keys.hasOwnProperty(data.message[1])) {
+        var color = this.color || utils.getRandomColor();
+        this._keys[data.message[1]] = circleKey = new CircleKey({
+            color: color
+        });
+    } else {
+        return;
+    }
 
     var containerWidth = this.$el.width();
     var containerHeight = this.$el.height();
     var circleWidth = circleKey.width();
-    var x = Visualizer.getRandomFromRange(circleWidth, containerWidth - circleWidth);
-    var y = Visualizer.getRandomFromRange(circleWidth,  containerHeight - circleWidth);
+    var x = utils.getRandomFromRange(circleWidth, containerWidth - circleWidth);
+    var y = utils.getRandomFromRange(circleWidth,  containerHeight - circleWidth);
 
     circleKey.setPosition(x, y);
     this.$el.append(circleKey.$el);
@@ -50,25 +55,10 @@ Visualizer.prototype.onKeyPress = function (data) {
 // velocity == 0
 // KeyOff
 Visualizer.prototype.onKeyOff = function (data) {
-}
-
-Visualizer.getRandomColor = function () {
-    //return '#'+Math.floor(Math.random()*16777215).toString(16);
-    var colors = [
-        "#e674f5",
-        "#55c2ec",
-        "#6aeb4c",
-        "#fa9b5c",
-        "#3deda5",
-        "#b17dbe",
-        "#1095c8",
-        "1645cc"
-    ];
-    return colors[Math.floor(Visualizer.getRandomFromRange(0,colors.length))];
-};
-
-Visualizer.getRandomFromRange = function (min, max) {
-    return Math.random() * (max - min) + min;
+   if (this._keys.hasOwnProperty(data.message[1])) {
+        this._keys[data.message[1]].$el.remove();
+        delete this._keys[data.message[1]];
+    } 
 }
 
 module.exports = Visualizer;

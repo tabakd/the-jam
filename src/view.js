@@ -5,6 +5,7 @@ function View(opts) {
     var el = opts.el !== undefined ? $(opts.el) : $('<div></div>'); 
     this.setElement(el);
     this.className = "";
+    this.rendered = false;
 }
 
 View.prototype.setElement = function (el) {
@@ -13,6 +14,7 @@ View.prototype.setElement = function (el) {
 };
 
 View.prototype.render = function () {
+    this.rendered = true;
 };
 
 
