@@ -24,9 +24,11 @@ var input = new midi.input();
 //});
 
 
-
+try {
 input.openPort(1);
 input.ignoreTypes(false, false, false);
+} catch(e) {
+}
 
 io.on('connection', function (socket) {
   input.on('message', function(deltaTime, message) {

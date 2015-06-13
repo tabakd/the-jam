@@ -17,6 +17,7 @@
     "tests"
   ],
   "dependencies": {
+    "jquery": "*",
     "wad": "~2.0.2"
   }
 }
